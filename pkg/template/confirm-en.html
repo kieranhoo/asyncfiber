@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .content-indent {
+                text-indent: 20px;
+            }
+            .contact-title {
+                font-weight: bold;
+                color: rgb(0,0,255)
+            }
+            .contact-content {
+                color: rgb(0,0,255);
+            }
+        </style>
+        <title>Email Template</title>
+    </head>
+    <body>
+        <div class="content-indent">
+            Dear {{ .Name }},
+        </div>
+        <br />
+        <div class="content-indent">
+            Reason: (Ex: Notification about your registeration)
+        </div>
+        <br />
+        <div class="content-indent">
+            Content: (Ví dụ: You registerd successful, time to checkin C6 isT in
+            Meeting Room ...)
+        </div>
+        <br />
+        <div class="content-indent">
+            Please contact us if you need help or have any questions.
+        </div>
+        <br />
+        <div class="content-indent">
+            Sincerely,
+        </div>
+        <br />
+        <div class="content-indent">
+            Sign (Ex: iST Admin Team)
+        </div>
+        <div>
+            <br />
+            <div class>--</div>
+            <br />
+            <div class="contact-title">
+                IST Institute Office
+            </div>
+            <br />
+            <div class="contact-content">
+                Ho Chi Minh City University of Technology - VNU HCM
+            </div>
+            <div class="contact-content">
+                IST Institute Office, 5th Floor, Building C6, 268 Ly Thuong Kiet
+                Street, Ward 14, District 10, Ho Chi Minh City.
+            </div>
+            <div class="contact-content">
+                Tel: (Example: 0283.8 647 256 - Ext: 5211)
+            </div>
+            <div class="contact-content">
+                Other contact methods: (Example: Web: www.ctct.hcmut.edu.vn)
+            </div>
+        </div>
+    </body>
+</html>

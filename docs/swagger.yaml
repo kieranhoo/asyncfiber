@@ -1,0 +1,144 @@
+definitions:
+  schema.SignInRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  schema.SignInResponse:
+    properties:
+      email:
+        type: string
+      success:
+        type: boolean
+      token:
+        type: string
+    required:
+    - email
+    - success
+    - token
+    type: object
+  schema.SignUpResponse:
+    properties:
+      msg:
+        type: string
+      success:
+        type: boolean
+    required:
+    - msg
+    - success
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: This is a documentation for the Student Checkin System API
+  title: Student Checkin System
+  version: 1.0.0
+paths:
+  /api/v1/auth/signin:
+    post:
+      consumes:
+      - application/json
+      description: Sign in account for admin.
+      parameters:
+      - description: Sign In
+        in: body
+        name: sign_in
+        required: true
+        schema:
+          $ref: '#/definitions/schema.SignInRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schema.SignInResponse'
+      tags:
+      - auth
+  /api/v1/auth/signup:
+    post:
+      consumes:
+      - application/json
+      description: Register account for admin.
+      parameters:
+      - description: Sign Up
+        in: body
+        name: sign_up
+        required: true
+        schema:
+          $ref: '#/definitions/schema.SignInRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/schema.SignUpResponse'
+      tags:
+      - auth
+  /common/capture:
+    get:
+      consumes:
+      - application/json
+      description: test sentry.io capture.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - common
+  /common/email:
+    get:
+      consumes:
+      - application/json
+      description: test email.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - common
+  /common/healthcheck:
+    get:
+      consumes:
+      - application/json
+      description: health check api server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - common
+  /common/sentry:
+    get:
+      consumes:
+      - application/json
+      description: test sentry.io.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - common
+  /common/workercheck:
+    get:
+      consumes:
+      - application/json
+      description: health check worker.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - common
+swagger: "2.0"
