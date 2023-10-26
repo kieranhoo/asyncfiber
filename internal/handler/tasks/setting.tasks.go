@@ -1,13 +1,13 @@
 package tasks
 
 import (
-	"qrcheckin/internal/worker"
+	"asyncfiber/internal/worker"
 )
 
 const (
-	DefaultQueue           string = "default_queue"
-	WorkerHealthCheck      string = "Worker.HealthCheck"
-	WorkerSaveUser         string = "Worker.SaveUser"
+	DefaultQueue      string = "default_queue"
+	WorkerHealthCheck string = "Worker.HealthCheck"
+	WorkerSaveUser    string = "Worker.SaveUser"
 )
 
 func Path() worker.Path {

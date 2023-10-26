@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"qrcheckin/api/controller"
+	"asyncfiber/api/controller"
 
 	"github.com/gofiber/fiber/v2"
 )

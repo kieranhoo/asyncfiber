@@ -1,8 +1,8 @@
 package utils
 
 import (
+	"asyncfiber/internal/config"
 	"fmt"
-	"qrcheckin/internal/config"
 )
 
 // ConnectionURLBuilder func for building URL connection.

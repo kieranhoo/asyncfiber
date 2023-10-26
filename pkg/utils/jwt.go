@@ -1,9 +1,9 @@
 package utils
 
 import (
+	"asyncfiber/internal/config"
 	"errors"
 	"fmt"
-	"qrcheckin/internal/config"
 	"strings"
 	"time"
 

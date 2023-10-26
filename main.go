@@ -4,13 +4,13 @@
 package main
 
 import (
+	"asyncfiber/api"
+	"asyncfiber/api/middleware"
+	"asyncfiber/api/routes"
+	"asyncfiber/cmd/cli/app"
+	_ "asyncfiber/docs"
 	"os"
 	"os/signal"
-	"qrcheckin/api"
-	"qrcheckin/api/middleware"
-	"qrcheckin/api/routes"
-	"qrcheckin/cmd/cli/app"
-	_ "qrcheckin/docs"
 	"syscall"
 )
 

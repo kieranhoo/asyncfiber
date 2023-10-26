@@ -1,9 +1,9 @@
 package mailers
 
 import (
+	"asyncfiber/internal/config"
 	"bytes"
 	"log"
-	"qrcheckin/internal/config"
 	"text/template"
 
 	"gopkg.in/gomail.v2"

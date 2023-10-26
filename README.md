@@ -15,8 +15,8 @@ To run Go API, you need the following:
 1. Clone the source code from the repository:
 
 ```bash
-git clone 
-cd qrcheckin
+git clone https://github.com/ikierans/asyncfiber-template.git
+cd asyncfiber-template
 ```
 
 2. Install the required dependencies
@@ -27,14 +27,9 @@ go mod download
 3. Run the following command
 - run api server
 ```bash
-go run main.go server
+make s
 ```
 - run worker server
 ```bash
-go run main.go worker default_queue
-```
-- options:
-
-```bash
-go run main.go worker [queue-name]
+make w
 ```

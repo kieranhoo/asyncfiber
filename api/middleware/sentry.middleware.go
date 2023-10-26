@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"qrcheckin/internal/config"
+	"asyncfiber/internal/config"
 
 	"github.com/gofiber/contrib/fibersentry"
 	"github.com/gofiber/fiber/v2"

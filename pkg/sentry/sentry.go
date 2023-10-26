@@ -1,8 +1,8 @@
 package sentry
 
 import (
+	"asyncfiber/internal/config"
 	"fmt"
-	"qrcheckin/internal/config"
 
 	"github.com/getsentry/sentry-go"
 	"github.com/gofiber/contrib/fibersentry"

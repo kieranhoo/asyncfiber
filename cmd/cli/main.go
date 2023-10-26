@@ -5,14 +5,14 @@
 package main
 
 import (
+	"asyncfiber/cmd/cli/app"
 	"log"
 	"os"
-	"qrcheckin/cmd/cli/app"
 	"sort"
 
 	"github.com/urfave/cli/v2"
 
-	_ "qrcheckin/docs"
+	_ "asyncfiber/docs"
 )
 
 func NewClient() *cli.App {

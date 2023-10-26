@@ -1,9 +1,9 @@
 package service
 
 import (
-	"qrcheckin/internal/handler/tasks"
-	"qrcheckin/internal/mailers"
-	"qrcheckin/internal/worker"
+	"asyncfiber/internal/handler/tasks"
+	"asyncfiber/internal/mailers"
+	"asyncfiber/internal/worker"
 )
 
 func Ping() {

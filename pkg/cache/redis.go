@@ -1,9 +1,9 @@
 package cache
 
 import (
+	"asyncfiber/internal/config"
 	"context"
 	"fmt"
-	"qrcheckin/internal/config"
 
 	"github.com/redis/go-redis/v9"
 )

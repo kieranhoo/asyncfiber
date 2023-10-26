@@ -1,12 +1,12 @@
 package api
 
 import (
+	"asyncfiber/internal/config"
+	"asyncfiber/pkg/sentry"
+	"asyncfiber/pkg/utils"
 	"fmt"
 	"log"
 	"os"
-	"qrcheckin/internal/config"
-	"qrcheckin/pkg/sentry"
-	"qrcheckin/pkg/utils"
 
 	"github.com/gofiber/fiber/v2"
 )

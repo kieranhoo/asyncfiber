@@ -1,7 +1,7 @@
 package app
 
 import (
-	"qrcheckin/internal/config"
+	"asyncfiber/internal/config"
 
 	"github.com/urfave/cli/v2"
 )

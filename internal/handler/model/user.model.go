@@ -1,6 +1,6 @@
 package model
 
-import "qrcheckin/pkg/database"
+import "asyncfiber/pkg/database"
 
 type Users struct {
 	Id          string `json:"id" gorm:"column:id"`

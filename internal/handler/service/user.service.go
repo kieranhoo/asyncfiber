@@ -1,10 +1,10 @@
 package service
 
 import (
-	"qrcheckin/internal/handler/model"
-	"qrcheckin/internal/handler/schema"
-	"qrcheckin/internal/handler/tasks"
-	"qrcheckin/pkg/utils"
+	"asyncfiber/internal/handler/model"
+	"asyncfiber/internal/handler/schema"
+	"asyncfiber/internal/handler/tasks"
+	"asyncfiber/pkg/utils"
 )
 
 func SignUp(req schema.SignUpRequest) error {

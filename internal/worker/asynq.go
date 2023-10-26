@@ -1,10 +1,10 @@
 package worker
 
 import (
+	"asyncfiber/internal/config"
 	"context"
 	"encoding/json"
 	"fmt"
-	"qrcheckin/internal/config"
 	"reflect"
 	"runtime"
 	"strings"

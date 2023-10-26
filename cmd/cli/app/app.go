@@ -1,16 +1,16 @@
 package app
 
 import (
+	"asyncfiber/api"
+	"asyncfiber/api/middleware"
+	"asyncfiber/api/routes"
+	"asyncfiber/internal/config"
+	"asyncfiber/internal/handler/service"
+	"asyncfiber/internal/handler/tasks"
+	"asyncfiber/internal/job"
+	"asyncfiber/internal/worker"
 	"os"
 	"os/signal"
-	"qrcheckin/api"
-	"qrcheckin/api/middleware"
-	"qrcheckin/api/routes"
-	"qrcheckin/internal/config"
-	"qrcheckin/internal/handler/service"
-	"qrcheckin/internal/handler/tasks"
-	"qrcheckin/internal/job"
-	"qrcheckin/internal/worker"
 	"syscall"
 	"time"
 )

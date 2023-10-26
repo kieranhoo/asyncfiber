@@ -1,4 +1,4 @@
-module qrcheckin
+module asyncfiber
 
 go 1.20
 

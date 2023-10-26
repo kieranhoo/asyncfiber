@@ -1,7 +1,7 @@
 package test
 
 import (
-	"qrcheckin/pkg/utils"
+	"asyncfiber/pkg/utils"
 	"testing"
 )
 

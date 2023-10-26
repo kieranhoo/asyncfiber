@@ -1,10 +1,10 @@
 package tasks
 
 import (
+	"asyncfiber/internal/handler/model"
 	"context"
 	"encoding/json"
 	"errors"
-	"qrcheckin/internal/handler/model"
 
 	"github.com/hibiken/asynq"
 )
@@ -29,8 +29,6 @@ func SignUp(id, firstName, lastName, phoneNumber, email, password string) error 
 	}
 	return errors.New("user already exists")
 }
-
-
 
 func SaveUser(id, firstName, lastName, phoneNumber, email string) error {
 	return new(model.Users).Insert(&model.Users{

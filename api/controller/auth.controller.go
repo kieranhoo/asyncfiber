@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"qrcheckin/internal/handler/schema"
-	"qrcheckin/internal/handler/service"
-	"qrcheckin/internal/validator"
+	"asyncfiber/internal/handler/schema"
+	"asyncfiber/internal/handler/service"
+	"asyncfiber/internal/validator"
 
 	"github.com/gofiber/fiber/v2"
 )
