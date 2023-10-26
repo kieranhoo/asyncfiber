@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"asyncfiber/internal/handler/service"
+	"asyncfiber/internal/app/service"
 	"asyncfiber/pkg/sentry"
 
 	"github.com/gofiber/fiber/v2"

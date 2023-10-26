@@ -1,8 +1,8 @@
 package service
 
 import (
+	"asyncfiber/internal/app/tasks"
 	"asyncfiber/internal/config"
-	"asyncfiber/internal/handler/tasks"
 	"asyncfiber/internal/mailers"
 	"asyncfiber/internal/worker"
 )

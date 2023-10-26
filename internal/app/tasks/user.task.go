@@ -1,7 +1,7 @@
 package tasks
 
 import (
-	"asyncfiber/internal/handler/model"
+	"asyncfiber/internal/app/model"
 	"context"
 	"encoding/json"
 	"errors"

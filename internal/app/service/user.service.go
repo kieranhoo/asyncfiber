@@ -1,9 +1,9 @@
 package service
 
 import (
-	"asyncfiber/internal/handler/model"
-	"asyncfiber/internal/handler/schema"
-	"asyncfiber/internal/handler/tasks"
+	"asyncfiber/internal/app/model"
+	"asyncfiber/internal/app/schema"
+	"asyncfiber/internal/app/tasks"
 	"asyncfiber/pkg/utils"
 )
 

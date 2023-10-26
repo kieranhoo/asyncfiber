@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"asyncfiber/internal/handler/schema"
-	"asyncfiber/internal/handler/service"
+	"asyncfiber/internal/app/schema"
+	"asyncfiber/internal/app/service"
 	"asyncfiber/internal/validator"
 
 	"github.com/gofiber/fiber/v2"
