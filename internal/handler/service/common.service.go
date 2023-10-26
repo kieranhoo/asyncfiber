@@ -1,6 +1,7 @@
 package service
 
 import (
+	"asyncfiber/internal/config"
 	"asyncfiber/internal/handler/tasks"
 	"asyncfiber/internal/mailers"
 	"asyncfiber/internal/worker"
@@ -12,7 +13,7 @@ func Ping() {
 }
 
 func HealthCheck() error {
-	return worker.Exec(tasks.WorkerHealthCheck, worker.NewTask(
+	return worker.Exec(config.CriticalQueue, worker.NewTask(
 		tasks.WorkerHealthCheck,
 		1,
 	))
