@@ -6,6 +6,10 @@ package main
 
 import (
 	"asyncfiber/cmd/cli/app"
+	"asyncfiber/internal/config"
+	"asyncfiber/pkg/sentry"
+	"asyncfiber/pkg/x/mailers"
+	"asyncfiber/pkg/x/worker"
 	"log"
 	"os"
 	"sort"
@@ -15,6 +19,12 @@ import (
 	_ "asyncfiber/docs"
 )
 
+func init() {
+	sentry.Init()
+	mailers.Config(config.Email, config.EmailAppPassword)
+	worker.SetBroker(config.RedisHost, config.RedisPort, config.RedisPassword)
+}
+
 func NewClient() *cli.App {
 	_app := &cli.App{
 		Name:        "checkin",
@@ -22,7 +32,7 @@ func NewClient() *cli.App {
 		Version:     "0.0.1",
 		Description: "API server",
 		Commands:    app.Command,
-		// Flags:       app.Flag,
+		// Flags:       module.Flag,
 	}
 
 	sort.Sort(cli.FlagsByName(_app.Flags))

@@ -1,9 +1,10 @@
 package tasks
 
 import (
-	"asyncfiber/internal/app/model"
 	"asyncfiber/internal/config"
-	"asyncfiber/internal/worker"
+	"asyncfiber/internal/module/model"
+	"asyncfiber/internal/module/types"
+	"asyncfiber/pkg/x/worker"
 	"context"
 	"encoding/json"
 	"errors"
@@ -16,17 +17,9 @@ var user = model.NewUser()
 func SignUp(id, firstName, lastName, phoneNumber, email, password string) error {
 	_user, err := user.GetByID(id)
 	if err != nil || _user == nil {
-		// return user.Insert(&model.Users{
-		// 	Id:          id,
-		// 	FirstName:   firstName,
-		// 	LastName:    lastName,
-		// 	PhoneNumber: phoneNumber,
-		// 	Email:       email,
-		// 	Password:    password,
-		// })
 		return worker.Exec(config.CriticalQueue, worker.NewTask(
 			WorkerSaveUser,
-			model.Users{
+			types.Users{
 				Id:          id,
 				FirstName:   firstName,
 				LastName:    lastName,
@@ -36,14 +29,14 @@ func SignUp(id, firstName, lastName, phoneNumber, email, password string) error 
 			},
 		))
 	}
-	if _user.GetPassword() == "" {
-		return _user.PromoteAdmin(id, "admin", password, email, phoneNumber)
+	if _user.Password == "" {
+		return user.PromoteAdmin(id, "admin", password, email, phoneNumber)
 	}
 	return errors.New("user already exists")
 }
 
 func SaveUser(id, firstName, lastName, phoneNumber, email string) error {
-	return new(model.Users).Insert(&model.Users{
+	return new(model.Users).Insert(&types.Users{
 		Id:          id,
 		FirstName:   firstName,
 		LastName:    lastName,
@@ -53,7 +46,7 @@ func SaveUser(id, firstName, lastName, phoneNumber, email string) error {
 }
 
 func HandleSaveUser(_ context.Context, task *asynq.Task) error {
-	var _user model.Users
+	var _user types.Users
 	if err := json.Unmarshal(task.Payload(), &_user); err != nil {
 		return err
 	}

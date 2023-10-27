@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// FiberConfig func for configuration Fiber app.
+// FiberConfig func for configuration Fiber module.
 // See: https://docs.gofiber.io/api/fiber#config
 func FiberConfig() fiber.Config {
 	// Define server settings.

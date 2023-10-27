@@ -5,5 +5,5 @@ import (
 )
 
 func TestEmail(t *testing.T) {
-	SendHTML("iduchungho@gmail.com")
+	SendHTML("pkg/template/email_test.html", "iduchungho@gmail.com")
 }

@@ -2,7 +2,6 @@ package api
 
 import (
 	"asyncfiber/internal/config"
-	"asyncfiber/pkg/sentry"
 	"asyncfiber/pkg/utils"
 	"fmt"
 	"log"
@@ -28,10 +27,8 @@ type route func(*fiber.App)
 type backgroundTask func()
 
 func New() IApp {
-	sentry.Init()
-	cng := config.FiberConfig()
 	return &_App{
-		engine: fiber.New(cng),
+		engine: fiber.New(config.FiberConfig()),
 	}
 }
 

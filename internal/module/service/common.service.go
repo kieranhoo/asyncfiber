@@ -1,10 +1,10 @@
 package service
 
 import (
-	"asyncfiber/internal/app/tasks"
 	"asyncfiber/internal/config"
-	"asyncfiber/internal/mailers"
-	"asyncfiber/internal/worker"
+	"asyncfiber/internal/module/tasks"
+	"asyncfiber/pkg/x/mailers"
+	"asyncfiber/pkg/x/worker"
 )
 
 func Ping() {
@@ -20,6 +20,6 @@ func HealthCheck() error {
 }
 
 func Email() (string, error) {
-	err := mailers.SendHTML("iduchungho@gmail.com")
+	err := mailers.SendHTML("pkg/template/email_test.html", "iduchungho@gmail.com")
 	return "", err
 }

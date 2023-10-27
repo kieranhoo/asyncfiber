@@ -1,6 +1,6 @@
-package interfaces
+package types
 
-import "asyncfiber/internal/app/schema"
+import "asyncfiber/internal/module/schema"
 
 type IAuth interface {
 	SignUp(req schema.SignUpRequest) error

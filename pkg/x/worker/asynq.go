@@ -1,7 +1,6 @@
 package worker
 
 import (
-	"asyncfiber/internal/config"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -23,9 +22,13 @@ type Engine struct {
 	queue  Queue
 }
 
-var broker = asynq.RedisClientOpt{
-	Addr:     fmt.Sprintf("%s:%s", config.RedisHost, config.RedisPort), // Redis server address
-	Password: config.RedisPassword,                                     // Redis password
+var broker asynq.RedisClientOpt
+
+func SetBroker(host, port, password string) {
+	broker = asynq.RedisClientOpt{
+		Addr:     fmt.Sprintf("%s:%s", host, port), // Redis server address
+		Password: password,                         // Redis password
+	}
 }
 
 func NewServer(concurrency int, queue Queue) *Engine {

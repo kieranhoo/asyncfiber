@@ -9,10 +9,20 @@ import (
 	"asyncfiber/api/routes"
 	"asyncfiber/cmd/cli/app"
 	_ "asyncfiber/docs"
+	"asyncfiber/internal/config"
+	"asyncfiber/pkg/sentry"
+	"asyncfiber/pkg/x/mailers"
+	"asyncfiber/pkg/x/worker"
 	"os"
 	"os/signal"
 	"syscall"
 )
+
+func init() {
+	sentry.Init()
+	mailers.Config(config.Email, config.EmailAppPassword)
+	worker.SetBroker(config.RedisHost, config.RedisPort, config.RedisPassword)
+}
 
 // @title Student Checkin System
 // @version 1.0.0

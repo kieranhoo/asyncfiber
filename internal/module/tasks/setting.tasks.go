@@ -1,7 +1,7 @@
 package tasks
 
 import (
-	"asyncfiber/internal/worker"
+	"asyncfiber/pkg/x/worker"
 )
 
 const (
