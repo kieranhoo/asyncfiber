@@ -1,6 +1,10 @@
 package model
 
-import "asyncfiber/pkg/database"
+import (
+	"asyncfiber/internal/app/interfaces"
+	"asyncfiber/pkg/database"
+	"log"
+)
 
 type Users struct {
 	Id          string `json:"id" gorm:"column:id"`
@@ -13,7 +17,11 @@ type Users struct {
 	Password    string `json:"password" gorm:"column:password"`
 }
 
-func (user *Users) GetByEmail(email string) (*Users, error) {
+func NewUser() interfaces.IUser {
+	return &Users{}
+}
+
+func (user *Users) GetByEmail(email string) (interfaces.IUser, error) {
 	_user := new(Users)
 	conn, err := database.Connection()
 	if err != nil {
@@ -25,7 +33,7 @@ func (user *Users) GetByEmail(email string) (*Users, error) {
 	return _user, nil
 }
 
-func (user *Users) GetByID(Id string) (*Users, error) {
+func (user *Users) GetByID(Id string) (interfaces.IUser, error) {
 	_user := new(Users)
 	conn, err := database.Connection()
 	if err != nil {
@@ -40,7 +48,11 @@ func (user *Users) GetByID(Id string) (*Users, error) {
 	return _user, nil
 }
 
-func (user *Users) Insert(_user *Users) error {
+func (user *Users) Insert(u interfaces.IUser) error {
+	_user := u.(*Users)
+	if _user == nil {
+		log.Fatal(_user)
+	}
 	conn, err := database.Connection()
 	if err != nil {
 		return err
@@ -68,4 +80,12 @@ func (user *Users) PromoteAdmin(id, role, password, email, phoneNumber string) e
 		return err
 	}
 	return nil
+}
+
+func (user *Users) GetPassword() string {
+	return user.Password
+}
+
+func (user *Users) GetEmail() string {
+	return user.Email
 }

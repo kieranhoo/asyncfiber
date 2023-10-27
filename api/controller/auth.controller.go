@@ -8,12 +8,14 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// SignUp.
+var authService = service.NewAuth()
+
+// SignUp
 // @Description Register account for admin.
 // @Tags auth
 // @Accept json
 // @Produce json
-// @Param sign_up body schema.SignInRequest true "Sign Up"
+// @Param sign_up body schema.SignUpRequest true "Sign Up"
 // @Success 200 {object} schema.SignUpResponse
 // @Router /api/v1/auth/signup [POST]
 func SignUp(c *fiber.Ctx) error {
@@ -30,7 +32,7 @@ func SignUp(c *fiber.Ctx) error {
 			Msg:     _validate,
 		})
 	}
-	if err := service.SignUp(req); err != nil {
+	if err := authService.SignUp(req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(schema.Error{
 			Success: false,
 			Msg:     err.Error(),
@@ -42,7 +44,7 @@ func SignUp(c *fiber.Ctx) error {
 	})
 }
 
-// SignIn.
+// SignIn
 // @Description Sign in account for admin.
 // @Tags auth
 // @Accept json
@@ -64,7 +66,7 @@ func SignIn(c *fiber.Ctx) error {
 			Msg:     _validate,
 		})
 	}
-	token, err := service.SignIn(req)
+	token, err := authService.SignIn(req)
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(schema.Error{
 			Success: false,

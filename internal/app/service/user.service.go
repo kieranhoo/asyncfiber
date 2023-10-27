@@ -1,13 +1,24 @@
 package service
 
 import (
+	"asyncfiber/internal/app/interfaces"
 	"asyncfiber/internal/app/model"
 	"asyncfiber/internal/app/schema"
 	"asyncfiber/internal/app/tasks"
 	"asyncfiber/pkg/utils"
 )
 
-func SignUp(req schema.SignUpRequest) error {
+type Auth struct {
+	repo interfaces.IUser
+}
+
+func NewAuth() interfaces.IAuth {
+	return &Auth{
+		repo: model.NewUser(),
+	}
+}
+
+func (auth *Auth) SignUp(req schema.SignUpRequest) error {
 	_pass, err := utils.GenPassword(req.Password)
 	if err != nil {
 		return err
@@ -22,16 +33,15 @@ func SignUp(req schema.SignUpRequest) error {
 	)
 }
 
-func SignIn(req schema.SignInRequest) (string, error) {
-	user := new(model.Users)
-	_user, err := user.GetByEmail(req.Email)
+func (auth *Auth) SignIn(req schema.SignInRequest) (string, error) {
+	_user, err := auth.repo.GetByEmail(req.Email)
 	if err != nil {
 		return "", err
 	}
-	if err := utils.ComparePassword(_user.Password, req.Password); err != nil {
+	if err := utils.ComparePassword(_user.GetPassword(), req.Password); err != nil {
 		return "", err
 	}
-	token, err := utils.GenerateToken(_user.Email)
+	token, err := utils.GenerateToken(_user.GetEmail())
 	if err != nil {
 		return "", err
 	}

@@ -22,6 +22,28 @@ definitions:
     - success
     - token
     type: object
+  schema.SignUpRequest:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+      phone_number:
+        type: string
+    required:
+    - email
+    - first_name
+    - id
+    - last_name
+    - password
+    - phone_number
+    type: object
   schema.SignUpResponse:
     properties:
       msg:
@@ -71,7 +93,7 @@ paths:
         name: sign_up
         required: true
         schema:
-          $ref: '#/definitions/schema.SignInRequest'
+          $ref: '#/definitions/schema.SignUpRequest'
       produces:
       - application/json
       responses:

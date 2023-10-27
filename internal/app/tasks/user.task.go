@@ -2,6 +2,8 @@ package tasks
 
 import (
 	"asyncfiber/internal/app/model"
+	"asyncfiber/internal/config"
+	"asyncfiber/internal/worker"
 	"context"
 	"encoding/json"
 	"errors"
@@ -9,22 +11,32 @@ import (
 	"github.com/hibiken/asynq"
 )
 
+var user = model.NewUser()
+
 func SignUp(id, firstName, lastName, phoneNumber, email, password string) error {
-	_user, err := new(model.Users).GetByID(id)
-	if err != nil {
-		return err
+	_user, err := user.GetByID(id)
+	if err != nil || _user == nil {
+		// return user.Insert(&model.Users{
+		// 	Id:          id,
+		// 	FirstName:   firstName,
+		// 	LastName:    lastName,
+		// 	PhoneNumber: phoneNumber,
+		// 	Email:       email,
+		// 	Password:    password,
+		// })
+		return worker.Exec(config.CriticalQueue, worker.NewTask(
+			WorkerSaveUser,
+			model.Users{
+				Id:          id,
+				FirstName:   firstName,
+				LastName:    lastName,
+				PhoneNumber: phoneNumber,
+				Email:       email,
+				Password:    password,
+			},
+		))
 	}
-	if _user.Empty() {
-		return _user.Insert(&model.Users{
-			Id:          id,
-			FirstName:   firstName,
-			LastName:    lastName,
-			PhoneNumber: phoneNumber,
-			Email:       email,
-			Password:    password,
-		})
-	}
-	if _user.Password == "" {
+	if _user.GetPassword() == "" {
 		return _user.PromoteAdmin(id, "admin", password, email, phoneNumber)
 	}
 	return errors.New("user already exists")
@@ -40,10 +52,10 @@ func SaveUser(id, firstName, lastName, phoneNumber, email string) error {
 	})
 }
 
-func HandleSaveUser(c context.Context, task *asynq.Task) error {
-	var user model.Users
-	if err := json.Unmarshal(task.Payload(), &user); err != nil {
+func HandleSaveUser(_ context.Context, task *asynq.Task) error {
+	var _user model.Users
+	if err := json.Unmarshal(task.Payload(), &_user); err != nil {
 		return err
 	}
-	return new(model.Users).Insert(&user)
+	return user.Insert(&_user)
 }
