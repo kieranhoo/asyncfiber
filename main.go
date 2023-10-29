@@ -4,11 +4,11 @@
 package main
 
 import (
-	"asyncfiber/api"
-	"asyncfiber/api/middleware"
-	"asyncfiber/api/routes"
 	"asyncfiber/cmd/cli/app"
 	_ "asyncfiber/docs"
+	"asyncfiber/internal/api"
+	"asyncfiber/internal/api/middleware"
+	"asyncfiber/internal/api/routes"
 	"asyncfiber/internal/config"
 	"asyncfiber/pkg/sentry"
 	"asyncfiber/pkg/x/mailers"

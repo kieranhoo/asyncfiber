@@ -1,9 +1,9 @@
 package app
 
 import (
-	"asyncfiber/api"
-	"asyncfiber/api/middleware"
-	"asyncfiber/api/routes"
+	"asyncfiber/internal/api"
+	"asyncfiber/internal/api/middleware"
+	"asyncfiber/internal/api/routes"
 	"asyncfiber/internal/config"
 	"asyncfiber/internal/module/service"
 	"asyncfiber/internal/module/tasks"

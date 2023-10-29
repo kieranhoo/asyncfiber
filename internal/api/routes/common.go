@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"asyncfiber/api/controller"
+	"asyncfiber/internal/api/controller"
 
 	"github.com/gofiber/fiber/v2"
 )
