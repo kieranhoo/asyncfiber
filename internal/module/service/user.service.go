@@ -2,20 +2,21 @@ package service
 
 import (
 	"asyncfiber/internal/config"
+	"asyncfiber/internal/module/entity"
+	"asyncfiber/internal/module/interfaces"
 	"asyncfiber/internal/module/model"
 	"asyncfiber/internal/module/schema"
 	"asyncfiber/internal/module/tasks"
-	"asyncfiber/internal/module/types"
 	"asyncfiber/pkg/utils"
 	"asyncfiber/pkg/x/worker"
 	"errors"
 )
 
 type Auth struct {
-	repo types.IUser
+	repo interfaces.IUser
 }
 
-func NewAuth() types.IAuth {
+func NewAuth() interfaces.IAuth {
 	return &Auth{
 		repo: model.NewUser(),
 	}
@@ -30,7 +31,7 @@ func (auth *Auth) SignUp(req schema.SignUpRequest) error {
 	if err != nil || _user == nil {
 		return worker.Exec(config.CriticalQueue, worker.NewTask(
 			tasks.WorkerSaveUser,
-			types.Users{
+			entity.Users{
 				Id:          req.Id,
 				FirstName:   req.FirstName,
 				LastName:    req.LastName,

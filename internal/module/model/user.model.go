@@ -1,35 +1,36 @@
 package model
 
 import (
-	"asyncfiber/internal/module/types"
+	"asyncfiber/internal/module/entity"
+	"asyncfiber/internal/module/interfaces"
 	"asyncfiber/pkg/database"
 	"gorm.io/gorm"
 )
 
 type Users struct {
-	data *types.Users
+	data *entity.Users
 	conn *gorm.DB
 }
 
-func NewUser() types.IUser {
+func NewUser() interfaces.IUser {
 	conn, err := database.Connection()
 	if err != nil {
 		panic(err.Error())
 	}
 	return &Users{
-		data: &types.Users{},
+		data: &entity.Users{},
 		conn: conn,
 	}
 }
 
-func (user *Users) GetByEmail(email string) (*types.Users, error) {
+func (user *Users) GetByEmail(email string) (*entity.Users, error) {
 	if err := user.conn.Raw("SELECT * FROM users WHERE email = ?", email).Scan(user.data).Error; err != nil {
 		return nil, err
 	}
 	return user.data, nil
 }
 
-func (user *Users) GetByID(Id string) (*types.Users, error) {
+func (user *Users) GetByID(Id string) (*entity.Users, error) {
 	conn, err := database.Connection()
 	if err != nil {
 		return nil, err
@@ -43,7 +44,7 @@ func (user *Users) GetByID(Id string) (*types.Users, error) {
 	return user.data, nil
 }
 
-func (user *Users) Insert(_user *types.Users) error {
+func (user *Users) Insert(_user *entity.Users) error {
 	if _user == nil {
 		return nil
 	}

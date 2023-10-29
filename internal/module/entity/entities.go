@@ -1,4 +1,4 @@
-package types
+package entity
 
 type Users struct {
 	Id          string `json:"id" gorm:"column:id"`
@@ -9,14 +9,4 @@ type Users struct {
 	Role        string `json:"role" gorm:"column:role"`
 	Title       string `json:"title" gorm:"column:title"`
 	Password    string `json:"password" gorm:"column:password"`
-}
-
-type IUser interface {
-	GetByEmail(email string) (*Users, error)
-	PromoteAdmin(id, role, password, email, phoneNumber string) error
-	GetByID(Id string) (*Users, error)
-	Insert(u *Users) error
-	Empty() bool
-	GetPassword() string
-	GetEmail() string
 }
