@@ -21,4 +21,3 @@ jobs:
 
     - name: Build the Go application
       run: go build -ldflags="-s -w" -o ./bin/exe ./cmd/cli
-      working-directory: /
