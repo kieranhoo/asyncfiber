@@ -13,7 +13,7 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/hibiken/asynq v0.24.1
 	github.com/joho/godotenv v1.5.1
-	github.com/redis/go-redis/v9 v9.2.1
+	github.com/redis/go-redis/v9 v9.3.0
 	github.com/swaggo/swag v1.16.2
 	github.com/urfave/cli/v2 v2.25.7
 	golang.org/x/crypto v0.14.0
