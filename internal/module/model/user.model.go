@@ -1,36 +1,34 @@
 package model
 
 import (
-	"asyncfiber/internal/module/entity"
-	"asyncfiber/internal/module/interfaces"
 	"asyncfiber/pkg/database"
 	"gorm.io/gorm"
 )
 
-type Users struct {
-	data *entity.Users
+type UsersRepo struct {
+	data *Users
 	conn *gorm.DB
 }
 
-func NewUser() interfaces.IUser {
+func NewUser() IUser {
 	conn, err := database.Connection()
 	if err != nil {
 		panic(err.Error())
 	}
-	return &Users{
-		data: &entity.Users{},
+	return &UsersRepo{
+		data: &Users{},
 		conn: conn,
 	}
 }
 
-func (user *Users) GetByEmail(email string) (*entity.Users, error) {
+func (user *UsersRepo) GetByEmail(email string) (*Users, error) {
 	if err := user.conn.Raw("SELECT * FROM users WHERE email = ?", email).Scan(user.data).Error; err != nil {
 		return nil, err
 	}
 	return user.data, nil
 }
 
-func (user *Users) GetByID(Id string) (*entity.Users, error) {
+func (user *UsersRepo) GetByID(Id string) (*Users, error) {
 	conn, err := database.Connection()
 	if err != nil {
 		return nil, err
@@ -44,7 +42,7 @@ func (user *Users) GetByID(Id string) (*entity.Users, error) {
 	return user.data, nil
 }
 
-func (user *Users) Insert(_user *entity.Users) error {
+func (user *UsersRepo) Insert(_user *Users) error {
 	if _user == nil {
 		return nil
 	}
@@ -56,11 +54,11 @@ func (user *Users) Insert(_user *entity.Users) error {
 	return nil
 }
 
-func (user *Users) Empty() bool {
+func (user *UsersRepo) Empty() bool {
 	return user.data.Email == ""
 }
 
-func (user *Users) PromoteAdmin(id, role, password, email, phoneNumber string) error {
+func (user *UsersRepo) PromoteAdmin(id, role, password, email, phoneNumber string) error {
 	if err := user.conn.Exec(
 		"UPDATE users SET password = ?, role=?, email = ?, phone_number = ? WHERE id = ?;",
 		password, role, email, phoneNumber, id).Error; err != nil {
@@ -69,10 +67,10 @@ func (user *Users) PromoteAdmin(id, role, password, email, phoneNumber string) e
 	return nil
 }
 
-func (user *Users) GetPassword() string {
+func (user *UsersRepo) GetPassword() string {
 	return user.data.Password
 }
 
-func (user *Users) GetEmail() string {
+func (user *UsersRepo) GetEmail() string {
 	return user.data.Email
 }
