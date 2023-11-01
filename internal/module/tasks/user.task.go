@@ -35,7 +35,7 @@ func SignUp(id, firstName, lastName, phoneNumber, email, password string) error 
 }
 
 func SaveUser(id, firstName, lastName, phoneNumber, email string) error {
-	return new(model.Users).Insert(&model.Users{
+	return new(model.UsersRepo).Insert(&model.Users{
 		Id:          id,
 		FirstName:   firstName,
 		LastName:    lastName,
