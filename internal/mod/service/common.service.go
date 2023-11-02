@@ -2,7 +2,7 @@ package service
 
 import (
 	"asyncfiber/internal/config"
-	"asyncfiber/internal/module/tasks"
+	"asyncfiber/internal/mod/tasks"
 	"asyncfiber/pkg/x/mailers"
 	"asyncfiber/pkg/x/worker"
 )

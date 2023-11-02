@@ -1,4 +1,4 @@
-package model
+package types
 
 type IUser interface {
 	GetByEmail(email string) (*Users, error)

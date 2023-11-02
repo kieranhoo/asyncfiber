@@ -32,7 +32,7 @@ func NewClient() *cli.App {
 		Version:     "0.0.1",
 		Description: "API server",
 		Commands:    app.Command,
-		// Flags:       module.Flag,
+		// Flags:       app.Flag,
 	}
 
 	sort.Sort(cli.FlagsByName(_app.Flags))

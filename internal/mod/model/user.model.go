@@ -1,34 +1,35 @@
 package model
 
 import (
+	"asyncfiber/internal/types"
 	"asyncfiber/pkg/database"
 	"gorm.io/gorm"
 )
 
 type UsersRepo struct {
-	data *Users
+	data *types.Users
 	conn *gorm.DB
 }
 
-func NewUser() IUser {
+func NewUser() types.IUser {
 	conn, err := database.Connection()
 	if err != nil {
 		panic(err.Error())
 	}
 	return &UsersRepo{
-		data: &Users{},
+		data: &types.Users{},
 		conn: conn,
 	}
 }
 
-func (user *UsersRepo) GetByEmail(email string) (*Users, error) {
+func (user *UsersRepo) GetByEmail(email string) (*types.Users, error) {
 	if err := user.conn.Raw("SELECT * FROM users WHERE email = ?", email).Scan(user.data).Error; err != nil {
 		return nil, err
 	}
 	return user.data, nil
 }
 
-func (user *UsersRepo) GetByID(Id string) (*Users, error) {
+func (user *UsersRepo) GetByID(Id string) (*types.Users, error) {
 	conn, err := database.Connection()
 	if err != nil {
 		return nil, err
@@ -42,7 +43,7 @@ func (user *UsersRepo) GetByID(Id string) (*Users, error) {
 	return user.data, nil
 }
 
-func (user *UsersRepo) Insert(_user *Users) error {
+func (user *UsersRepo) Insert(_user *types.Users) error {
 	if _user == nil {
 		return nil
 	}

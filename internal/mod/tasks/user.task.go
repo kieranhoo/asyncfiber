@@ -2,7 +2,8 @@ package tasks
 
 import (
 	"asyncfiber/internal/config"
-	"asyncfiber/internal/module/model"
+	"asyncfiber/internal/mod/model"
+	"asyncfiber/internal/types"
 	"asyncfiber/pkg/x/worker"
 	"context"
 	"encoding/json"
@@ -18,7 +19,7 @@ func SignUp(id, firstName, lastName, phoneNumber, email, password string) error 
 	if err != nil || _user == nil {
 		return worker.Exec(config.CriticalQueue, worker.NewTask(
 			WorkerSaveUser,
-			model.Users{
+			types.Users{
 				Id:          id,
 				FirstName:   firstName,
 				LastName:    lastName,
@@ -35,7 +36,7 @@ func SignUp(id, firstName, lastName, phoneNumber, email, password string) error 
 }
 
 func SaveUser(id, firstName, lastName, phoneNumber, email string) error {
-	return new(model.UsersRepo).Insert(&model.Users{
+	return new(model.UsersRepo).Insert(&types.Users{
 		Id:          id,
 		FirstName:   firstName,
 		LastName:    lastName,
@@ -45,7 +46,7 @@ func SaveUser(id, firstName, lastName, phoneNumber, email string) error {
 }
 
 func HandleSaveUser(_ context.Context, task *asynq.Task) error {
-	var _user model.Users
+	var _user types.Users
 	if err := json.Unmarshal(task.Payload(), &_user); err != nil {
 		return err
 	}
