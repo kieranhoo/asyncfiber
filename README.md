@@ -15,8 +15,8 @@ To run Go API, you need the following:
 1. Clone the source code from the repository:
 
 ```bash
-git clone https://github.com/ikierans/asyncfiber-template.git
-cd asyncfiber-template
+git clone https://github.com/ikierans/asyncfiber.git
+cd asyncfiber
 ```
 
 2. Install the required dependencies
