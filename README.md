@@ -6,9 +6,8 @@
 To run Go API, you need the following:
 
 - Golang 1.16 or higher
-- Running RabbitMQ environment
 - Running Redis environment
-- Running mongodb environment
+- Running mysql database environment
 
 ## Installation
 
