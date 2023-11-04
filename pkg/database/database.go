@@ -3,11 +3,11 @@ package database
 import (
 	"asyncfiber/pkg/utils"
 
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 func Connection() (*gorm.DB, error) {
-	dsn, _ := utils.ConnectionURLBuilder("mysql")
-	return gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	dsn, _ := utils.ConnectionURLBuilder("postgres")
+	return gorm.Open(postgres.Open(dsn), &gorm.Config{})
 }

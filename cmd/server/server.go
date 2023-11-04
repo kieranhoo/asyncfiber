@@ -1,4 +1,4 @@
-package app
+package server
 
 import (
 	"asyncfiber/internal/api"
@@ -58,9 +58,7 @@ func AsyncWorker(concurrency int) error {
 
 func JobLaunch() {
 	j := job.New()
-	if err := j.Scheduler(service.Ping, 5*time.Second); err != nil {
-		panic(err)
-	}
+	j.Scheduler(service.Ping, 5*time.Second)
 	if err := j.Launch(); err != nil {
 		panic(err)
 	}

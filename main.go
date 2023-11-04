@@ -4,7 +4,7 @@
 package main
 
 import (
-	"asyncfiber/cmd/cli/app"
+	"asyncfiber/cmd/server"
 	_ "asyncfiber/docs"
 	"asyncfiber/internal/api"
 	"asyncfiber/internal/api/middleware"
@@ -33,7 +33,7 @@ func main() {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
 	coreAPI := api.New().Shutdown(sigChan)
-	coreAPI.BackgroundTask(app.JobLaunch)
+	coreAPI.BackgroundTask(server.JobLaunch)
 	coreAPI.Middleware(
 		middleware.FiberMiddleware,
 		middleware.SentryMiddleware,
@@ -44,7 +44,3 @@ func main() {
 	)
 	coreAPI.Run()
 }
-
-// func main() {
-// 	utils.LogINFO()
-// }

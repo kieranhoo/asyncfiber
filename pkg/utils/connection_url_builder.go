@@ -23,6 +23,16 @@ func ConnectionURLBuilder(n string) (string, error) {
 			config.DbName,
 			config.DbSSLMode,
 		)
+	case "pg-migrate":
+		url = fmt.Sprintf(
+			"postgres://%s:%s@%s:%s/%s?sslmode=%s",
+			config.DbUser,
+			config.DbPassword,
+			config.DbHost,
+			config.DbPort,
+			config.DbName,
+			config.DbSSLMode,
+		)
 	case "mysql":
 		// URL for Mysql connection.
 		url = fmt.Sprintf(
@@ -39,13 +49,6 @@ func ConnectionURLBuilder(n string) (string, error) {
 			"%s:%s",
 			config.RedisHost,
 			config.RedisPort,
-		)
-	case "fiber":
-		// URL for Fiber connection.
-		url = fmt.Sprintf(
-			"%s:%s",
-			config.Host,
-			config.Port,
 		)
 	default:
 		// Return error message.

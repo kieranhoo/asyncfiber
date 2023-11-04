@@ -24,7 +24,7 @@ func getName(input string) string {
 	return paths[len(paths)-1]
 }
 
-func (job *Job) Scheduler(fn func(), _time time.Duration) error {
+func (job *Job) Scheduler(fn func(), _time time.Duration) {
 	job.function[getName(runtime.FuncForPC(reflect.ValueOf(fn).Pointer()).Name())] = _time.String()
 	ticker := time.NewTicker(_time)
 	go func() {
@@ -32,7 +32,6 @@ func (job *Job) Scheduler(fn func(), _time time.Duration) error {
 			fn()
 		}
 	}()
-	return nil
 }
 
 func (job *Job) Launch() error {

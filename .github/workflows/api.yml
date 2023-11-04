@@ -20,4 +20,4 @@ jobs:
         go-version: 1.21
 
     - name: Build the Go application
-      run: go build -ldflags="-s -w" -o ./bin/exe ./cmd/cli
+      run: go build -ldflags="-s -w" -o ./bin/exe ./cmd

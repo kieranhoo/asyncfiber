@@ -5,7 +5,7 @@
 package main
 
 import (
-	"asyncfiber/cmd/cli/app"
+	"asyncfiber/cmd/server"
 	"asyncfiber/internal/config"
 	"asyncfiber/pkg/sentry"
 	"asyncfiber/pkg/x/mailers"
@@ -31,7 +31,7 @@ func NewClient() *cli.App {
 		Usage:       "hpcc checkin",
 		Version:     "0.0.1",
 		Description: "API server",
-		Commands:    app.Command,
+		Commands:    server.Command,
 		// Flags:       app.Flag,
 	}
 
