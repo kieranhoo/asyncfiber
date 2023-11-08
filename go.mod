@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/charmbracelet/lipgloss v0.9.1
-	github.com/charmbracelet/log v0.2.5
+	github.com/charmbracelet/log v0.3.0
 	github.com/getsentry/sentry-go v0.25.0
 	github.com/go-playground/validator/v10 v10.15.5
 	github.com/gofiber/contrib/fibersentry v1.0.4
@@ -71,11 +71,12 @@ require (
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
-	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/exp v0.0.0-20231006140011-7918f672742d // indirect
+	golang.org/x/net v0.16.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
-	golang.org/x/tools v0.9.1 // indirect
+	golang.org/x/tools v0.14.0 // indirect
 	google.golang.org/protobuf v1.29.1 // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
